@@ -10,24 +10,13 @@ namespace EX4
     {
         static void Main(string[] args)
         {
-            foreach (string s in args)
+            for (int i = 0; i < args.Length; i++)
             {
-                Console.WriteLine(s);
-            }
-            string inputString = Console.ReadLine();
-            Console.WriteLine(inputString);
-            string[] splitedInputString = inputString.Split(new[] { "--" }, StringSplitOptions.None);
-            //foreach (string s in splitedInputString)
-            //{
-            //    Console.WriteLine(s);
-            //}
-            for (int i = 0; i < splitedInputString.Length; i++)
-            {
-                if (splitedInputString[i].Contains("number"))
+                if (args[i].Contains("number"))
                 {
                     char[] charsToTrimNumber = { '-', 'n', 'u', 'm', 'b', 'e', 'r', '=', ' ' };
                     int trimmedNumber;
-                    if (int.TryParse(splitedInputString[i].Trim(charsToTrimNumber), out trimmedNumber))
+                    if (int.TryParse(args[i].Trim(charsToTrimNumber), out trimmedNumber))
                     {
                         Console.WriteLine($"number: { trimmedNumber}");
                     }
@@ -36,9 +25,9 @@ namespace EX4
                         Console.WriteLine("number is a mandatory parameter");
                     }
                 }
-                else if (splitedInputString[i].Contains("string="))
+                else if (args[i].Contains("string"))
                 {
-                    string[] newSplitedString = splitedInputString[i].Split('=');
+                    string[] newSplitedString = args[i].Split('=');
                     char[] charsToTrimString = { '"', ' ' };
                     if (newSplitedString.Length > 0)
                     {
@@ -50,9 +39,17 @@ namespace EX4
                         Console.WriteLine("string: was skipped");
                     }
                 }
+                else if (args[i].Contains("flag"))
+                {
+                    bool flag = true;
+                    if (args[i].Contains("false"))
+                    {
+                        flag = false;
+                    }
+                    Console.WriteLine($"flag: {flag}");
+                }
             }
             Console.ReadLine();
         }
- 
     }
 }
