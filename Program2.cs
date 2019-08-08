@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EX4
 {
@@ -25,7 +21,7 @@ namespace EX4
                         Console.WriteLine("number is a mandatory parameter");
                     }
                 }
-                else if (args[i].Contains("string"))
+                if (args[i].Contains("string"))
                 {
                     string[] newSplitedString = args[i].Split('=');
                     char[] charsToTrimString = { '"', ' ' };
@@ -39,7 +35,7 @@ namespace EX4
                         Console.WriteLine("string: was skipped");
                     }
                 }
-                else if (args[i].Contains("flag"))
+                if (args[i].Contains("flag"))
                 {
                     bool flag = true;
                     if (args[i].Contains("false"))
